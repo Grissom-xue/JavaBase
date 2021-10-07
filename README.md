@@ -115,19 +115,75 @@ Java数据类型分为基本数据类型以及引用数据类型:
 
 
 
-#### 基本数据类型转换
+### 基本数据类型转换
 > 当Java程序在进行副指挥或者运算时，精度小的类型自动转换为精度大的数据类型，这个就是自动类型转换
 > byte->short->int->long->float->double 
 ```java
 // int型自动转为double类型的
 double a = 30;
-
 int a = 30.2; //此时会报错
 ```
-
-### 自动类型转换的注意点和细节
+#### 自动类型转换的注意点和细节
 1. 有多种类型的数据混合运算的时候，系统会将所有数据都转换成容量最大的那种数据类型，然后再进行计算
 2. 当我们把精度大的数据赋值给精度小的的数据类型的时候，就会报错
 3. byte,short,三种类型之间做任何计算都会先转为int类型
 4. boolean 不参与转换
 5. 自动提升原则： 表达式结果的类型自动提升为操作数中最大的类型
+#### 强制类型转换
+> 自动类型转换的逆过程，将容量大的数据类型赋值给容量小的数据类型、 强制类型转换的时候需要加上强制转换符，但是可能造成精度降低
+```java
+public class Base_41To60 {
+    @Test
+    public void test001(){
+        int i = (int) 1.9;
+        System.out.println(i); //1,精度丢失
+    }
+}
+```
+#### 强制类型转换的细节说明
+1. 强制转换符只针对最近的操作数有效，往往胡使用小括号提升优先级
+2. char类型可以操作int类型的常量值，但是不能保存int类型的变量值，需要强转
+
+### 基本数据类型与String类型的转换
+```java
+public class Base{
+    @Test
+    public void test002(){
+        int a = 100;
+        // 基本数据类型转String类型，只要 使用 + ""即可
+        System.out.println(a + "" + 100);
+        
+        // 字符串转基本数据类型，可以通过包装类的parseXXX方法进行
+        try
+        {
+        Integer.parseInt("123");
+        Double.parseDouble("123.1");
+        Float.parseFloat("123.33");
+        Short.parseShort("12");
+        Long.parseLong("1334342343");
+        Boolean.parseBoolean("true");
+        Byte.parseByte("12");
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        
+        // 获取字符串中某个指定字符
+        String s = "sdasda12312321";
+        char c = s.charAt(0);
+        System.out.println(c);
+    }
+}
+```
+
+### 运算符
+1. 算数运算符[+,-,*,/,%,++,--,正负号，字符串相加]
+2. 赋值运算符
+3. 关系运算符
+4. 逻辑运算符
+5. 位运算符
+6. 三元运算符
+#### 算数运算符的使用细节：
+1. 对于除号，整数除法和浮点数除法是有区别的。 都是整数的情况下，结果也是整数，如果有小数部分会舍弃。 
+2. 自增 在前在后的区别,举例假设i=1 
+   1. j = ++i //1
+   2. j = i++ //2
