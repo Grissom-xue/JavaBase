@@ -178,12 +178,52 @@ public class Base{
 ### 运算符
 1. 算数运算符[+,-,*,/,%,++,--,正负号，字符串相加]
 2. 赋值运算符
-3. 关系运算符
-4. 逻辑运算符
+3. 关系运算符[==,!=,<,>,<=,>=,instanceof]
+4. 逻辑运算符[&&,||,!],[&,|,^]
 5. 位运算符
 6. 三元运算符
 #### 算数运算符的使用细节：
 1. 对于除号，整数除法和浮点数除法是有区别的。 都是整数的情况下，结果也是整数，如果有小数部分会舍弃。 
-2. 自增 在前在后的区别,举例假设i=1 
-   1. j = ++i //1
-   2. j = i++ //2
+2. 自增 自减 在前在后的区别
+```java
+public class Base_61To80 {
+    @Test
+    public void test001(){
+        int i = 1;
+        int j = ++i;
+        System.out.println(j);//2
+    }
+
+    @Test
+    public void test002(){
+        int i = 1;
+        // i 先进行赋值操作之后 再进行自增
+        int j = i++;
+        System.out.println(j);//1
+    }
+}
+```
+#### 关系运算符使用细节
+1. 关系运算符的结果都是Boolean类型，要么是true，要么是false
+2. 关系运算符组成的表达式我们成为关系表达式 a>b
+3. 比较运算符==千万不要写成=
+#### 逻辑运算符使用细节
+1) a&b : & 叫逻辑与:规则:当 a 和 b 同时为 true ,则结果为 true, 否则为 false
+2) a&&b : && 叫短路与:规则:当 a 和 b 同时为 true ,则结果为 true,否则为 false
+3) a|b : | 叫逻辑或，规则:当 a 和 b ，有一个为 true ,则结果为 true,否则为 false
+4) a||b : || 叫短路或，规则:当 a 和 b ，有一个为 true ,则结果为 true,否则为 false
+5) !a : 叫取反，或者非运算。当 a 为 true, 则结果为 false, 当 a 为 false 是，结果为 true
+6) a^b: 叫逻辑异或，当 a 和 b 不同时，则结果为 true, 否则为 false
+总结： 短路与 和 短路或效率更高
+#### 三元运算符
+> 语法：      条件表达式？表达式1：表达式2
+> 当前面的条件表达式结果为true，执行表达式1，否则执行表达式2
+```java
+@Test
+public void test003(){
+    int a = 99;
+    int b = 100;
+    int max = a>b?a:b;
+    System.out.println(max);
+}
+```
